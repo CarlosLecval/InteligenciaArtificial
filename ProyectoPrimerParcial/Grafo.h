@@ -28,6 +28,7 @@ class Grafo
         Grafo();
         void lee_grafo(string);
         void imprimir_grafo();
+        bool devuelve_informacion_de_un_nodo(string, Nodo&) const;
     private:
         unordered_map<string, Nodo> grafo;
 };
