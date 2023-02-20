@@ -22,7 +22,8 @@ struct Nodo_del_arbol
 class Arbol
 {
     public:
-        Arbol(Nodo_informacion);
+        Arbol();
+        void crea_arbol(Nodo_informacion);
         bool devuelve_informacion_de_un_vertice_grafo_no_dirigido(string, int, Nodo&, Nodo_informacion&) const;
 		void agrega_hijo_a_un_nodo(int padre, Nodo_informacion contenido);
 		bool esta_un_nodo_en_ancestros(int nodo_origen, string nombre_del_nodo) const;
