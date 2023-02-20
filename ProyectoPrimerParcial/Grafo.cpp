@@ -77,3 +77,7 @@ bool Grafo::devuelve_informacion_de_un_nodo(string nodo, Nodo& nodo_devuelto) co
     return false;
 }
 
+vector<Enlace> Grafo::devuelve_vecinos_de_un_nodo(string nodo) const
+{
+    return grafo.at(nodo).vecinos;
+}

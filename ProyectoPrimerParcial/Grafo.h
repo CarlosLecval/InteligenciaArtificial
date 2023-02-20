@@ -29,7 +29,7 @@ class Grafo
         void lee_grafo(string);
         void imprimir_grafo();
         bool devuelve_informacion_de_un_nodo(string, Nodo&) const;
-        void devuelve_vecinos_de_un_nodo(string, vector<string>&) const;
+        vector<Enlace> devuelve_vecinos_de_un_nodo(string) const;
     private:
         unordered_map<string, Nodo> grafo;
 };
