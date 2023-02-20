@@ -79,3 +79,13 @@ void Grafo::imprimir_grafo()
         cout << endl;
     }
 }
+
+bool Grafo::devuelve_informacion_de_un_nodo(string nodo, Nodo& nodo_devuelto) const
+{
+    if(grafo.find(nodo) != grafo.end())
+    {
+        nodo_devuelto = grafo.at(nodo);
+        return true;
+    }
+    return false;
+}
