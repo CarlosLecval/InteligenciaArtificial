@@ -4,7 +4,6 @@ Enlace::Enlace(string nombre, float costo_enlace)
 {
     this->nombre = nombre;
     this->costo_enlace = costo_enlace;
-    this->next = nullptr;
 }
 
 Grafo::Grafo()
@@ -42,25 +41,15 @@ void Grafo::lee_grafo(string archivo)
             grafo[nodo1].costo_ciudad = costo1;
             grafo[nodo1].coordenada_x = posicionx_1;
             grafo[nodo1].coordenada_y = posiciony_1;
-            grafo[nodo1].head = new Enlace(nodo2, costo_enlace);
         }
-        else{
-            Enlace* temp = grafo[nodo1].head;
-            grafo[nodo1].head = new Enlace(nodo2, costo_enlace);
-            grafo[nodo1].head->next = temp;
-        }
+        grafo[nodo1].vecinos.push_back(Enlace(nodo2, costo_enlace));
         if(grafo.find(nodo2) == grafo.end())
         {
             grafo[nodo2].costo_ciudad = costo2;
             grafo[nodo2].coordenada_x = posicionx_2;
             grafo[nodo2].coordenada_y = posiciony_2;
-            grafo[nodo2].head = new Enlace(nodo1, costo_enlace);
         }
-        else{
-            Enlace* temp = grafo[nodo2].head;
-            grafo[nodo2].head = new Enlace(nodo1, costo_enlace);
-            grafo[nodo2].head->next = temp;
-        }
+        grafo[nodo2].vecinos.push_back(Enlace(nodo1, costo_enlace));
     }
     myfile.close();
 }
@@ -70,11 +59,9 @@ void Grafo::imprimir_grafo()
     for(auto it = grafo.begin(); it != grafo.end(); it++)
     {
         cout << it->first << " " << it->second.costo_ciudad << " " << it->second.coordenada_x << " " << it->second.coordenada_y << endl;
-        Enlace* temp = it->second.head;
-        while(temp != nullptr)
+        for(int i = 0; i < it->second.vecinos.size(); i++)
         {
-            cout << temp->nombre << " " << temp->costo_enlace << endl;
-            temp = temp->next;
+            cout << it->second.vecinos[i].nombre << " " << it->second.vecinos[i].costo_enlace << endl;
         }
         cout << endl;
     }
@@ -89,3 +76,4 @@ bool Grafo::devuelve_informacion_de_un_nodo(string nodo, Nodo& nodo_devuelto) co
     }
     return false;
 }
+
