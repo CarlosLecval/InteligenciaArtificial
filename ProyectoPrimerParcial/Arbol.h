@@ -25,6 +25,7 @@ class Arbol
         Arbol();
         void crea_arbol(Nodo_informacion);
         bool devuelve_informacion_de_un_vertice_grafo_no_dirigido(string nombre_nodo, int padre, Nodo& nodo, Nodo_informacion&) const;
+        int devuelve_profundidad_del_nodo(int posicion);
 		void agrega_hijo_a_un_nodo(int padre, Nodo_informacion contenido);
 		bool esta_un_nodo_en_ancestros(int nodo_origen, string nodo_presunto_ancestro) const;
         int devuelve_tamano_del_arbol() const;

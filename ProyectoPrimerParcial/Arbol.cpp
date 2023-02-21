@@ -19,6 +19,11 @@ bool Arbol::devuelve_informacion_de_un_vertice_grafo_no_dirigido(string nombre_n
     informacion_nodo.profundidad = arbol_de_busqueda[padre_nodo].contenido.profundidad + 1;
 }
 
+int Arbol::devuelve_profundidad_del_nodo(int posicion_nodo)
+{
+    return arbol_de_busqueda[posicion_nodo].contenido.profundidad;
+}
+
 void Arbol::agrega_hijo_a_un_nodo(int padre, Nodo_informacion contenido)
 {
     Nodo_del_arbol temporal;
