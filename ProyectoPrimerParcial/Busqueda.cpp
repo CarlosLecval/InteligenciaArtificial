@@ -43,7 +43,7 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
     return false;
 }
 
-bool Busqueda::intersectan(deque<int> camino_inicio, deque<int> camino_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
+bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
 {
     for(auto i = camino_inicio.begin(); i != camino_inicio.end(); i++)
     {

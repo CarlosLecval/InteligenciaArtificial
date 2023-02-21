@@ -27,5 +27,5 @@ class Busqueda
         Arbol arbol;
         Arbol arbol_final;
         Grafo grafo;
-        bool intersectan(deque<int>, deque<int>, int&, int&);
+        bool intersectan(deque<int>&, deque<int>&, int&, int&);
 };
