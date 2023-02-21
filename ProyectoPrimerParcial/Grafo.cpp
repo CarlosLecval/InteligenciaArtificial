@@ -8,7 +8,6 @@ Enlace::Enlace(string nombre, float costo_enlace)
 
 Grafo::Grafo()
 {
-    //this->grafo = unordered_map<string, Nodo>();
 }
 
 void Grafo::lee_grafo(string archivo)
