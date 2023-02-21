@@ -2,13 +2,15 @@
 #include <iostream>
 #include "Grafo.h"
 #include "Arbol.h"
+#include <stack>
+#include <queue>
 
 using namespace std;
 
 class Busqueda
 {
     public:
-        Busqueda();
+        Busqueda(Grafo);
         bool busqueda_a_lo_ancho(string, string, int&);
         bool busqueda_primero_en_profundidad(string, string, int&);
         bool busqueda_primero_en_profundidad_limitada(string nodo_inicio, string nodo_final, int& nodo_encontrado, int profundidad);
