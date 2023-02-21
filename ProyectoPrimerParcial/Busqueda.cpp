@@ -12,7 +12,7 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
     Nodo raiz_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     Nodo_informacion raiz;
-    if(!arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz)) return false;
+    arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
     arbol_de_busqueda.crea_arbol(raiz);
     cola.push(0);
     while(!cola.empty())
@@ -69,11 +69,11 @@ bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int
     Nodo raiz_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     Nodo_informacion raiz;
-    if(!arbol_de_busqueda_inicio.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz)) return false;
+    arbol_de_busqueda_inicio.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
     arbol_de_busqueda_inicio.crea_arbol(raiz);
     camino_inicio.push_back(0);
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_final, raiz_nodo)) return false;
-    if(!arbol_de_busqueda_final.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_final, -1, raiz_nodo, raiz)) return false;
+    arbol_de_busqueda_final.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_final, -1, raiz_nodo, raiz);
     arbol_de_busqueda_final.crea_arbol(raiz);
     camino_final.push_front(0);
     while(!camino_inicio.empty() && !camino_final.empty())
@@ -140,7 +140,7 @@ bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_f
     Nodo raiz_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     Nodo_informacion raiz;
-    if(!arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz)) return false;
+    arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
     arbol_de_busqueda.crea_arbol(raiz);
     pila.push(0);
     while(!pila.empty())
@@ -179,7 +179,7 @@ bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, stri
 
     Nodo_informacion raiz;
 
-    if(!arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz)) return false;
+    arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
 
     arbol_de_busqueda.crea_arbol(raiz);
     pila.push(0);

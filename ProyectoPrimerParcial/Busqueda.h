@@ -15,7 +15,7 @@ class Busqueda
         bool busqueda_a_lo_ancho(string, string, int&);
         bool busqueda_primero_en_profundidad(string, string, int&);
         bool busqueda_primero_en_profundidad_limitada(string nodo_inicio, string nodo_final, int& nodo_encontrado, int profundidad);
-        bool busqueda_primero_en_profundidad_iterativa(string nodo_inicio, string nodo_final, int& nodo_encontrado);
+        bool busqueda_primero_en_profundidad_iterativa(string nodo_inicio, string nodo_final, int& nodo_encontrado,int primera_profundidad,int incremento_profundidad);
         bool busqueda_bidireccional(string nodo_inicio, string nodo_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final);
         bool busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado);
         bool busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, int& nodo_encontrado);
