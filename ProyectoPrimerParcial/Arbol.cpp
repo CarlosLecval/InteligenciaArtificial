@@ -14,7 +14,7 @@ void Arbol::crea_arbol(Nodo_informacion contenido)
 
 bool Arbol::devuelve_informacion_de_un_vertice_grafo_no_dirigido(string nombre_nodo, int padre_nodo, Nodo& nodo, Nodo_informacion& informacion_nodo)
 {
-    informacion_nodo.nombre = nodo.nombre;
+    informacion_nodo.nombre = nombre_nodo;
     informacion_nodo.costo_acumulado = arbol_de_busqueda[padre_nodo].contenido.costo_acumulado + nodo.costo_ciudad;
     informacion_nodo.profundidad = arbol_de_busqueda[padre_nodo].contenido.profundidad + 1;
 }
