@@ -319,3 +319,41 @@ bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_enco
     }
     return false;
 }
+
+bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+{
+    vector<int> agenda;
+    Arbol arbol_de_busqueda;
+    Nodo raiz_nodo;
+    if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
+    Nodo_informacion raiz;
+    arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
+    arbol_de_busqueda.crea_arbol(raiz);
+    agenda.push_back(0);
+    while(!agenda.empty())
+    {
+        int nodo_actual = agenda[0];
+        if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final && arbol_de_busqueda.devuelve_costo_acumulado_de_un_nodo(agenda[0]) <= arbol_de_busqueda.devuelve_costo_acumulado_de_un_nodo(nodo_encontrado))
+        {
+            nodo_encontrado = nodo_actual;
+            return true;
+        }
+        agenda.erase(agenda.begin());
+        vector<Enlace> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
+        for(auto i = vecinos.begin(); i != vecinos.end(); i++)
+        {
+            if(!arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->nombre)) continue;
+            vecinos.erase(i);
+            i--;
+        }
+        for(auto i = vecinos.begin(); i != vecinos.end(); i++)
+        {
+            grafo.devuelve_informacion_de_un_nodo(i->nombre, raiz_nodo);
+            arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->nombre, nodo_actual, raiz_nodo, raiz);
+            arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, raiz);
+            agenda.push_back(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
+        }
+        ordena_por_costo_acumulado(agenda,arbol_de_busqueda,agenda.size());
+    }
+    return false;
+}
