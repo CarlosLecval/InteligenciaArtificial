@@ -339,6 +339,13 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
             arbol = arbol_de_busqueda;
             return true;
         }
+        vector<Enlace> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
+        for(auto i = vecinos.begin(); i != vecinos.end(); i++)
+        {
+            if(!arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->nombre)) continue;
+            vecinos.erase(i);
+            i--;
+        }
         Nodo_informacion temp_max;
         for(auto i = 0; i < vecinos.size(); i++)
         {
