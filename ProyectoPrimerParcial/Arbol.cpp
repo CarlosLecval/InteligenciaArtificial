@@ -24,6 +24,11 @@ int Arbol::devuelve_profundidad_del_nodo(int posicion_nodo)
     return arbol_de_busqueda[posicion_nodo].contenido.profundidad;
 }
 
+int Arbol::devuelve_costo_acumulado_del_nodo(int posicion_nodo)
+{
+    return arbol_de_busqueda[posicion_nodo].contenido.costo_acumulado;
+}
+
 void Arbol::agrega_hijo_a_un_nodo(int padre, Nodo_informacion contenido)
 {
     Nodo_del_arbol temporal;
