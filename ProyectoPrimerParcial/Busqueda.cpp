@@ -410,6 +410,7 @@ bool Busqueda::es_costo_mas_heuristica_menor(vector<int>& agenda, float costo, A
     {
         if (arbol.devuelve_costo_mas_heuristica_del_nodo(*i) < costo) return false;
     }
+    return true;
 }
 
 void Busqueda::ordena_por_costo_mas_heuristica(vector<int>& agenda, Arbol& arbol)
