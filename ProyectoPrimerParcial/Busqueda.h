@@ -5,6 +5,7 @@
 #include <stack>
 #include <queue>
 #include <deque>
+#include <math.h>
 
 using namespace std;
 
@@ -19,11 +20,13 @@ class Busqueda
         bool busqueda_bidireccional(string nodo_inicio, string nodo_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final);
         bool busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado);
         void ordena_por_costo_acumulado(vector<int>&,Arbol&,int);
+        void ordena_por_costo_mas_heuristica(vector<int>&,Arbol&);
         bool busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, int& nodo_encontrado);
         bool beam_search(string nodo_inicio, string nodo_final, int& nodo_encontrado, int k);
         bool branch_and_bound(string nodo_inicio, string nodo_final, int& nodo_encontrado);
         bool busqueda_a_estrella(string nodo_inicio, string nodo_final, int& nodo_encontrado);
         string devuelve_la_ruta_encontrada(int nodo_encontrado) const;
+        bool es_costo_mas_heuristica_menor(vector<int>& agenda, float costo_mas_heuristica, Arbol& arbol) const;
     private:
         Arbol arbol;
         Arbol arbol_final;
