@@ -491,3 +491,26 @@ string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado) const
         camino = camino + " " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
     return camino;
 }
+
+string Busqueda::devuelve_la_ruta_bidireccional(int nodo_encontrado, int nodo_encontrado2) const
+{
+    vector<int> temporal;
+    string camino = "";
+    temporal.clear();
+    while (nodo_encontrado != -1)
+    {
+        temporal.push_back(nodo_encontrado);
+        nodo_encontrado = arbol.devuelve_padre_de_un_nodo(nodo_encontrado);
+    }
+    for (int i = temporal.size() - 1; i >= 0; i--)
+        camino = camino + " " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
+    temporal.clear();
+    while (nodo_encontrado2 != -1)
+    {
+        temporal.push_back(nodo_encontrado2);
+        nodo_encontrado2 = arbol_final.devuelve_padre_de_un_nodo(nodo_encontrado2);
+    }
+    for (int i = temporal.size() - 1; i >= 0; i--)
+        camino = camino + " " + arbol_final.devuelve_nombre_de_un_nodo(temporal[i]);
+    return camino;
+}
