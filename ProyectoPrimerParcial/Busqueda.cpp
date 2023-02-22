@@ -351,17 +351,16 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
         {
             grafo.devuelve_informacion_de_un_nodo(vecinos[i].nombre, raiz_nodo);
             arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(vecinos[i].nombre, nodo_actual, raiz_nodo, raiz);
-            if(max_num == NULL || raiz.costo_acumulado > temp_max.costo_acumulado)
+            if(temp_max.nombre == "" || raiz.costo_acumulado > temp_max.costo_acumulado)
             {
-                max_num = new int(i);
                 temp_max = raiz;
             }
         }
-        if(max_num != NULL)
+        if(temp_max.nombre != "")
         {
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, temp_max);
+            max_num = new int(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
         }
-        else break;
     }
     arbol = arbol_de_busqueda;
     return false;
