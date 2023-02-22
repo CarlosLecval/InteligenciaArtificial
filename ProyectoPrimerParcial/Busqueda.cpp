@@ -149,6 +149,7 @@ bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_f
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
             nodo_encontrado = nodo_actual;
+            arbol = arbol_de_busqueda;
             return true;
         }
         pila.pop();
@@ -190,6 +191,7 @@ bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, stri
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
             nodo_encontrado = nodo_actual;
+            arbol = arbol_de_busqueda;
             return true;
         }
         pila.pop();
@@ -260,6 +262,7 @@ bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, 
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
             nodo_encontrado = nodo_actual;
+            arbol = arbol_de_busqueda;
             return true;
         }
         agenda.erase(agenda.begin());
@@ -298,6 +301,7 @@ bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_enco
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
             nodo_encontrado = nodo_actual;
+            arbol = arbol_de_busqueda;
             return true;
         }
         agenda.erase(agenda.begin());
@@ -382,6 +386,7 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final && arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[0]) <= arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(nodo_encontrado))
         {
             nodo_encontrado = nodo_actual;
+            arbol = arbol_de_busqueda;
             return true;
         }
         agenda.erase(agenda.begin());
@@ -470,4 +475,19 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
         ordena_por_costo_mas_heuristica(agenda,arbol_de_busqueda);
     }
     return false;
+}
+ 
+string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado) const
+{
+    vector<int> temporal;
+    string camino = "";
+    temporal.clear();
+    while (nodo_encontrado != -1)
+    {
+        temporal.push_back(nodo_encontrado);
+        nodo_encontrado = arbol.devuelve_padre_de_un_nodo(nodo_encontrado);
+    }
+    for (int i = temporal.size() - 1; i >= 0; i--)
+        camino = camino + " " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
+    return camino;
 }

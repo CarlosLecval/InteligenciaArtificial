@@ -64,3 +64,8 @@ string Arbol::devuelve_nombre_de_un_nodo(int nodo) const
 {
     return arbol_de_busqueda[nodo].contenido.nombre;
 }
+
+int Arbol::devuelve_padre_de_un_nodo(int nodo) const
+{
+    return arbol_de_busqueda[nodo].padre;
+}
