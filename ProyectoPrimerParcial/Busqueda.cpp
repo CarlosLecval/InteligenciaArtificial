@@ -10,8 +10,8 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
     queue<int> cola;
     Arbol arbol_de_busqueda;
     Nodo raiz_nodo;
-    if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     Nodo_informacion raiz;
+    if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
     arbol_de_busqueda.crea_arbol(raiz);
     cola.push(0);
@@ -67,8 +67,8 @@ bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int
     Arbol arbol_de_busqueda_inicio;
     Arbol arbol_de_busqueda_final;
     Nodo raiz_nodo;
-    if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     Nodo_informacion raiz;
+    if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     arbol_de_busqueda_inicio.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
     arbol_de_busqueda_inicio.crea_arbol(raiz);
     camino_inicio.push_back(0);
@@ -317,6 +317,45 @@ bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_enco
         }
         ordena_por_costo_acumulado(agenda,arbol_de_busqueda,k);
     }
+    return false;
+}
+
+bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+{
+    Nodo raiz_nodo;
+    Nodo_informacion raiz;
+    Arbol arbol_de_busqueda;
+    if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
+    arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
+    arbol_de_busqueda.crea_arbol(raiz);
+    int* max_num = new int(0);
+    while(max_num != NULL)
+    {
+        int nodo_actual = *max_num;
+        max_num = NULL;
+        if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
+        {
+            nodo_encontrado = nodo_actual;
+            arbol = arbol_de_busqueda;
+            return true;
+        }
+        Nodo_informacion temp_max;
+        for(auto i = 0; i < vecinos.size(); i++)
+        {
+            grafo.devuelve_informacion_de_un_nodo(vecinos[i].nombre, raiz_nodo);
+            arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(vecinos[i].nombre, nodo_actual, raiz_nodo, raiz);
+            if(temp_max.nombre == "" || raiz.costo_acumulado > temp_max.costo_acumulado)
+            {
+                temp_max = raiz;
+            }
+        }
+        if(temp_max.nombre != "")
+        {
+            arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, temp_max);
+            max_num = new int(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
+        }
+    }
+    arbol = arbol_de_busqueda;
     return false;
 }
 
