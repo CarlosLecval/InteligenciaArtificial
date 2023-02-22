@@ -372,7 +372,7 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
     while(!agenda.empty())
     {
         int nodo_actual = agenda[0];
-        if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final && arbol_de_busqueda.devuelve_costo_acumulado_de_un_nodo(agenda[0]) <= arbol_de_busqueda.devuelve_costo_acumulado_de_un_nodo(nodo_encontrado))
+        if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final && arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[0]) <= arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(nodo_encontrado))
         {
             nodo_encontrado = nodo_actual;
             return true;
