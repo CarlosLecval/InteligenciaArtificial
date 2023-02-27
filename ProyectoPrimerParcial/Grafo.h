@@ -9,9 +9,8 @@ using namespace std;
 
 struct Enlace
 {
-    string nombre;
-    float costo_enlace;
-    Enlace(string, float);
+    string nombre = "";
+    float costo_enlace = 0;
 };
 
 struct Nodo
@@ -19,17 +18,17 @@ struct Nodo
     float costo_ciudad = 0;
     float coordenada_x = 0;
     float coordenada_y = 0;
-    vector<Enlace> vecinos;
+    unordered_map<string, float> vecinos;
 };
 
 class Grafo
 {
     public:
         Grafo();
-        void lee_grafo(string);
-        void imprimir_grafo();
+        Grafo(string);
         bool devuelve_informacion_de_un_nodo(string, Nodo&) const;
-        vector<Enlace> devuelve_vecinos_de_un_nodo(string) const;
+        unordered_map<string, float> devuelve_vecinos_de_un_nodo(string nodo) const;
+        void imprime_grafo() const;
     private:
         unordered_map<string, Nodo> grafo;
 };

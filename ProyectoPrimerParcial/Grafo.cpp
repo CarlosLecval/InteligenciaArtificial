@@ -1,16 +1,11 @@
 #include "Grafo.h"
 
-Enlace::Enlace(string nombre, float costo_enlace)
-{
-    this->nombre = nombre;
-    this->costo_enlace = costo_enlace;
-}
 
 Grafo::Grafo()
 {
 }
 
-void Grafo::lee_grafo(string archivo)
+Grafo::Grafo(string archivo)
 {
     string line;
     ifstream myfile(archivo);
@@ -41,29 +36,16 @@ void Grafo::lee_grafo(string archivo)
             grafo[nodo1].coordenada_x = posicionx_1;
             grafo[nodo1].coordenada_y = posiciony_1;
         }
-        grafo[nodo1].vecinos.push_back(Enlace(nodo2, costo_enlace));
+        grafo[nodo1].vecinos[nodo2] = costo_enlace;
         if(grafo.find(nodo2) == grafo.end())
         {
             grafo[nodo2].costo_ciudad = costo2;
             grafo[nodo2].coordenada_x = posicionx_2;
             grafo[nodo2].coordenada_y = posiciony_2;
         }
-        grafo[nodo2].vecinos.push_back(Enlace(nodo1, costo_enlace));
+        grafo[nodo2].vecinos[nodo1] = costo_enlace;
     }
     myfile.close();
-}
-
-void Grafo::imprimir_grafo()
-{
-    for(auto it = grafo.begin(); it != grafo.end(); it++)
-    {
-        cout << it->first << " " << it->second.costo_ciudad << " " << it->second.coordenada_x << " " << it->second.coordenada_y << endl;
-        for(int i = 0; i < it->second.vecinos.size(); i++)
-        {
-            cout << it->second.vecinos[i].nombre << " " << it->second.vecinos[i].costo_enlace << endl;
-        }
-        cout << endl;
-    }
 }
 
 bool Grafo::devuelve_informacion_de_un_nodo(string nodo, Nodo& nodo_devuelto) const
@@ -76,7 +58,20 @@ bool Grafo::devuelve_informacion_de_un_nodo(string nodo, Nodo& nodo_devuelto) co
     return false;
 }
 
-vector<Enlace> Grafo::devuelve_vecinos_de_un_nodo(string nodo) const
+unordered_map<string, float> Grafo::devuelve_vecinos_de_un_nodo(string nodo) const
 {
     return grafo.at(nodo).vecinos;
+}
+
+void Grafo::imprime_grafo() const
+{
+    for(auto it = grafo.begin(); it != grafo.end(); it++)
+    {
+        cout << it->first << " " << it->second.costo_ciudad << " " << it->second.coordenada_x << " " << it->second.coordenada_y << endl;
+        for(auto it2 = it->second.vecinos.begin(); it2 != it->second.vecinos.end(); it2++)
+        {
+            cout << it2->first << " " << it2->second << endl;
+        }
+        cout << endl;
+    }
 }

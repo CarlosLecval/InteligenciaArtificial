@@ -15,8 +15,14 @@ void Arbol::crea_arbol(Nodo_informacion contenido)
 void Arbol::devuelve_informacion_de_un_vertice_grafo_no_dirigido(string nombre_nodo, int padre_nodo, Nodo& nodo, Nodo_informacion& informacion_nodo)
 {
     informacion_nodo.nombre = nombre_nodo;
-    informacion_nodo.costo_acumulado = arbol_de_busqueda[padre_nodo].contenido.costo_acumulado + nodo.costo_ciudad;
-    informacion_nodo.profundidad = arbol_de_busqueda[padre_nodo].contenido.profundidad + 1;
+    if(padre_nodo != -1){
+        informacion_nodo.costo_acumulado = arbol_de_busqueda[padre_nodo].contenido.costo_acumulado + nodo.costo_ciudad + nodo.vecinos[arbol_de_busqueda[padre_nodo].contenido.nombre];
+        informacion_nodo.profundidad = arbol_de_busqueda[padre_nodo].contenido.profundidad + 1;
+    }
+    else {
+        informacion_nodo.costo_acumulado = nodo.costo_ciudad;
+        informacion_nodo.profundidad = 0;
+    }
 }
 
 int Arbol::devuelve_profundidad_del_nodo(int posicion_nodo)

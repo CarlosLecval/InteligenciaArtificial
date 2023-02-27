@@ -25,17 +25,12 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
             return true;
         }
         cola.pop();
-        vector<Enlace> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
+        unordered_map<string, float> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
         {
-            if(!arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->nombre)) continue;
-            vecinos.erase(i);
-            i--;
-        }
-        for(auto i = vecinos.begin(); i != vecinos.end(); i++)
-        {
-            grafo.devuelve_informacion_de_un_nodo(i->nombre, raiz_nodo);
-            arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->nombre, nodo_actual, raiz_nodo, raiz);
+            if(arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
+            grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
+            arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, raiz);
             cola.push(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
         }
@@ -60,7 +55,7 @@ bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, 
     return false;
 }
 
-bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
+/*bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
 {
     deque<int> camino_inicio;
     deque<int> camino_final;
@@ -130,10 +125,10 @@ bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int
         }
     }
     return false;
-}
+}*/
 
 
-bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+/*bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     stack<int> pila;
     Arbol arbol_de_busqueda;
@@ -169,9 +164,9 @@ bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_f
         }
     }
     return false;
-}
+}*/
 
-bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, string nodo_final, int& nodo_encontrado, int profundidad_limite)
+/*bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, string nodo_final, int& nodo_encontrado, int profundidad_limite)
 {
     stack<int> pila;
     Arbol arbol_de_busqueda;
@@ -217,16 +212,16 @@ bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, stri
         }
     }
     return false;    
-}
+}*/
 
-bool Busqueda::busqueda_primero_en_profundidad_iterativa(string nodo_inicio, string nodo_final, int& nodo_encontrado,int primera_profundidad,int incremento_profundidad)
+/*bool Busqueda::busqueda_primero_en_profundidad_iterativa(string nodo_inicio, string nodo_final, int& nodo_encontrado,int primera_profundidad,int incremento_profundidad)
 {
     Nodo raiz_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     while(!busqueda_primero_en_profundidad_limitada(nodo_inicio,nodo_final,nodo_encontrado,primera_profundidad))
         primera_profundidad += incremento_profundidad;
     return true;
-}
+}*/
 
 void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_busqueda,int k)
 {
@@ -246,7 +241,7 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
     agenda.erase(agenda.begin() + k, agenda.end());
 }
 
-bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+/*bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     vector<int> agenda;
     Arbol arbol_de_busqueda;
@@ -283,9 +278,9 @@ bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, 
         ordena_por_costo_acumulado(agenda,arbol_de_busqueda,agenda.size());
     }
     return false;
-}
+}*/
 
-bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_encontrado, int k)
+/*bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_encontrado, int k)
 {
     vector<int> agenda;
     Arbol arbol_de_busqueda;
@@ -322,9 +317,9 @@ bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_enco
         ordena_por_costo_acumulado(agenda,arbol_de_busqueda,k);
     }
     return false;
-}
+}*/
 
-bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+/*bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     Nodo raiz_nodo;
     Nodo_informacion raiz;
@@ -368,9 +363,9 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
     }
     arbol = arbol_de_busqueda;
     return false;
-}
+}*/
 
-bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+/*bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     vector<int> agenda;
     Arbol arbol_de_busqueda;
@@ -407,7 +402,7 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
         ordena_por_costo_acumulado(agenda,arbol_de_busqueda,agenda.size());
     }
     return false;
-}
+}*/
 
 bool Busqueda::es_costo_mas_heuristica_menor(vector<int>& agenda, float costo, Arbol& arbol) const
 {
@@ -434,7 +429,7 @@ void Busqueda::ordena_por_costo_mas_heuristica(vector<int>& agenda, Arbol& arbol
     }
 }
 
-bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+/*bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     vector<int> agenda;
     Arbol arbol_de_busqueda;
@@ -475,7 +470,7 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
         ordena_por_costo_mas_heuristica(agenda,arbol_de_busqueda);
     }
     return false;
-}
+}*/
  
 string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado) const
 {
