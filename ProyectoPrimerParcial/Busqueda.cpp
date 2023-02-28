@@ -342,6 +342,7 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
         if(temp_max.nombre != "")
         {
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, temp_max);
+            cout << arbol_de_busqueda.devuelve_nombre_de_un_nodo(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1) << endl;
             max_num = new int(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
         }
     }
