@@ -116,6 +116,7 @@ bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int
     }
     return false;
 }
+
 /*bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     stack<int> pila;
@@ -307,7 +308,7 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
     return false;
 }*/
 
-/*bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado)
+bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     Nodo raiz_nodo;
     Nodo_informacion raiz;
@@ -326,18 +327,13 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
             arbol = arbol_de_busqueda;
             return true;
         }
-        vector<Enlace> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
+        unordered_map<string, float> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
+        Nodo_informacion temp_max;
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
         {
-            if(!arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->nombre)) continue;
-            vecinos.erase(i);
-            i--;
-        }
-        Nodo_informacion temp_max;
-        for(auto i = 0; i < vecinos.size(); i++)
-        {
-            grafo.devuelve_informacion_de_un_nodo(vecinos[i].nombre, raiz_nodo);
-            arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(vecinos[i].nombre, nodo_actual, raiz_nodo, raiz);
+            if(!arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
+            grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
+            arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             if(temp_max.nombre == "" || raiz.costo_acumulado > temp_max.costo_acumulado)
             {
                 temp_max = raiz;
@@ -351,7 +347,7 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
     }
     arbol = arbol_de_busqueda;
     return false;
-}*/
+}
 
 /*bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
