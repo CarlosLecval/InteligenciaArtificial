@@ -331,7 +331,7 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
         Nodo_informacion temp_max;
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
         {
-            if(!arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
+            if(arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
             grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
             arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             if(temp_max.nombre == "" || raiz.costo_acumulado > temp_max.costo_acumulado)
@@ -342,7 +342,6 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
         if(temp_max.nombre != "")
         {
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, temp_max);
-            cout << arbol_de_busqueda.devuelve_nombre_de_un_nodo(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1) << endl;
             max_num = new int(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
         }
     }
