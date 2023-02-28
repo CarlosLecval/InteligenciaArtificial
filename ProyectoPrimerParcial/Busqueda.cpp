@@ -184,14 +184,14 @@ bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, stri
     return false;
 }
 
-/*bool Busqueda::busqueda_primero_en_profundidad_iterativa(string nodo_inicio, string nodo_final, int& nodo_encontrado,int primera_profundidad,int incremento_profundidad)
+bool Busqueda::busqueda_primero_en_profundidad_iterativa(string nodo_inicio, string nodo_final, int& nodo_encontrado,int primera_profundidad,int incremento_profundidad)
 {
     Nodo raiz_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     while(!busqueda_primero_en_profundidad_limitada(nodo_inicio,nodo_final,nodo_encontrado,primera_profundidad))
         primera_profundidad += incremento_profundidad;
     return true;
-}*/
+}
 
 void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_busqueda,int k)
 {
