@@ -38,13 +38,13 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
     return false;
 }
 
-bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
+bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final, Arbol& arbol_de_busqueda_inicio, Arbol& arbol_de_busqueda_final)
 {
     for(auto i = camino_inicio.begin(); i != camino_inicio.end(); i++)
     {
         for(auto j = camino_final.begin(); j != camino_final.end(); j++)
         {
-            if(*i == *j)
+            if(arbol_de_busqueda_inicio.devuelve_nombre_de_un_nodo(*i) == arbol_de_busqueda_final.devuelve_nombre_de_un_nodo(*j))
             {
                 nodo_encontrado_inicio = *i;
                 nodo_encontrado_final = *j;
@@ -55,7 +55,7 @@ bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, 
     return false;
 }
 
-/*bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
+bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int& nodo_encontrado_inicio, int& nodo_encontrado_final)
 {
     deque<int> camino_inicio;
     deque<int> camino_final;
@@ -81,17 +81,12 @@ bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, 
             return true;
         }
         camino_inicio.pop_front();
-        vector<Enlace> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda_inicio.devuelve_nombre_de_un_nodo(nodo_actual));
+        unordered_map<string, float> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda_inicio.devuelve_nombre_de_un_nodo(nodo_actual));
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
         {
-            if(!arbol_de_busqueda_inicio.esta_un_nodo_en_ancestros(nodo_actual, i->nombre)) continue;
-            vecinos.erase(i);
-            i--;
-        }
-        for(auto i = vecinos.begin(); i != vecinos.end(); i++)
-        {
-            grafo.devuelve_informacion_de_un_nodo(i->nombre, raiz_nodo);
-            arbol_de_busqueda_inicio.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->nombre, nodo_actual, raiz_nodo, raiz);
+            if(arbol_de_busqueda_inicio.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
+            grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
+            arbol_de_busqueda_inicio.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             arbol_de_busqueda_inicio.agrega_hijo_a_un_nodo(nodo_actual, raiz);
             camino_inicio.push_back(arbol_de_busqueda_inicio.devuelve_tamano_del_arbol() - 1);
         }
@@ -106,18 +101,13 @@ bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, 
         vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda_final.devuelve_nombre_de_un_nodo(nodo_actual));
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
         {
-            if(!arbol_de_busqueda_final.esta_un_nodo_en_ancestros(nodo_actual, i->nombre)) continue;
-            vecinos.erase(i);
-            i--;
-        }
-        for(auto i = vecinos.begin(); i != vecinos.end(); i++)
-        {
-            grafo.devuelve_informacion_de_un_nodo(i->nombre, raiz_nodo);
-            arbol_de_busqueda_final.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->nombre, nodo_actual, raiz_nodo, raiz);
+            if(arbol_de_busqueda_final.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
+            grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
+            arbol_de_busqueda_final.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             arbol_de_busqueda_final.agrega_hijo_a_un_nodo(nodo_actual, raiz);
             camino_final.push_front(arbol_de_busqueda_final.devuelve_tamano_del_arbol() - 1);
         }
-        if(intersectan(camino_inicio, camino_final, nodo_encontrado_inicio, nodo_encontrado_final))
+        if(intersectan(camino_inicio, camino_final, nodo_encontrado_inicio, nodo_encontrado_final, arbol_de_busqueda_inicio, arbol_de_busqueda_final))
         {
             arbol = arbol_de_busqueda_inicio;
             arbol_final = arbol_de_busqueda_final;
@@ -125,9 +115,7 @@ bool Busqueda::intersectan(deque<int>& camino_inicio, deque<int>& camino_final, 
         }
     }
     return false;
-}*/
-
-
+}
 /*bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     stack<int> pila;
@@ -489,23 +477,23 @@ string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado) const
 
 string Busqueda::devuelve_la_ruta_bidireccional(int nodo_encontrado, int nodo_encontrado2) const
 {
-    vector<int> temporal;
+    vector<string> temporal;
     string camino = "";
-    temporal.clear();
+    cout << "encontrado en: " << arbol.devuelve_nombre_de_un_nodo(nodo_encontrado) << endl;
+    cout << "encontrado en: " << arbol_final.devuelve_nombre_de_un_nodo(nodo_encontrado2) << endl;
     while (nodo_encontrado != -1)
     {
-        temporal.push_back(nodo_encontrado);
+        temporal.push_back(arbol.devuelve_nombre_de_un_nodo(nodo_encontrado));
         nodo_encontrado = arbol.devuelve_padre_de_un_nodo(nodo_encontrado);
     }
-    for (int i = temporal.size() - 1; i >= 0; i--)
-        camino = camino + " " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
-    temporal.clear();
+    reverse(temporal.begin(), temporal.end());
+    nodo_encontrado2 = arbol_final.devuelve_padre_de_un_nodo(nodo_encontrado2);
     while (nodo_encontrado2 != -1)
     {
-        temporal.push_back(nodo_encontrado2);
+        temporal.push_back(arbol_final.devuelve_nombre_de_un_nodo(nodo_encontrado2));
         nodo_encontrado2 = arbol_final.devuelve_padre_de_un_nodo(nodo_encontrado2);
     }
-    for (int i = temporal.size() - 1; i >= 0; i--)
-        camino = camino + " " + arbol_final.devuelve_nombre_de_un_nodo(temporal[i]);
+    for(auto i = temporal.begin(); i != temporal.end(); i++)
+        camino = camino + " " + *i;
     return camino;
 }

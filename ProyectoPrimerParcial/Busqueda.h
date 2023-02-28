@@ -6,6 +6,7 @@
 #include <queue>
 #include <deque>
 #include <math.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,5 +33,5 @@ class Busqueda
         bool es_costo_mas_heuristica_menor(vector<int>& agenda, float costo_mas_heuristica, Arbol& arbol) const;
         void ordena_por_costo_acumulado(vector<int>&,Arbol&,int);
         void ordena_por_costo_mas_heuristica(vector<int>&,Arbol&);
-        bool intersectan(deque<int>&, deque<int>&, int&, int&);
+        bool intersectan(deque<int>&, deque<int>&, int&, int&, Arbol&, Arbol&);
 };
