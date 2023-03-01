@@ -345,7 +345,7 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
             }
             while(!agenda.empty() && arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[agenda.size()-1]) >= arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(mejor_solucion))
             {
-                agenda.erase(agenda.end());
+                agenda.erase(agenda.begin() + agenda.size() - 1);
             }
             if(agenda.empty()){
                 arbol = arbol_de_busqueda;
@@ -362,10 +362,12 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
             grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
             arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, raiz);
-            if(arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1) < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(mejor_solucion) || mejor_solucion == -1)
+            if(raiz.costo_acumulado < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(mejor_solucion) || mejor_solucion == -1)
+            {
                 agenda.push_back(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
+            }
         }
-        ordena_por_costo_acumulado(agenda, arbol_de_busqueda,agenda.size());
+        sort(agenda.begin(), agenda.end(), [this, &arbol_de_busqueda](int a, int b){return arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(a) < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(b);});
     }
     return false;
 }
