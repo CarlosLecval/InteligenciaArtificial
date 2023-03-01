@@ -207,8 +207,8 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
             }
         }
     }
-    
-    agenda.erase(agenda.begin() + k, agenda.end());
+    if(k < agenda.size())
+        agenda.erase(agenda.begin() + k, agenda.end());
 }
 
 bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, int& nodo_encontrado)
