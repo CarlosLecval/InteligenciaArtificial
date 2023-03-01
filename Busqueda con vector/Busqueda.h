@@ -41,7 +41,6 @@ class Busqueda
 		~Busqueda();
 		bool lee_grafo(string archivo);
 		bool busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int & nodo_encontrado);
-		bool busqueda_tinmarin(string nodo_inicio, string nodo_final, int & nodo_encontrado);
 		bool busqueda_primero_en_profundidad(string nodo_inicio, string nodo_final, int& nodo_encontrado);
 		bool busqueda_profundidad_limitada(string nodo_inicio, string nodo_final, 
 			 unsigned int limite_de_profundidad, int& nodo_encontrado);
