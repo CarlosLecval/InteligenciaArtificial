@@ -199,7 +199,7 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
     {
         for(int j = i + 1; j < agenda.size(); j++)
         {
-        if(arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[i]) < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[j]))
+        if(arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[i]) > arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[j]))
             {
                 int aux = agenda[i];
                 agenda[i] = agenda[j];
