@@ -5,7 +5,7 @@
 using namespace std;
 int main()
 {
-  Grafo g("Grafo.csv");
+  Grafo g("Ciudades de Mexico.csv");
   Busqueda b(g);
   int nodo_encontrado, nodo_encontrado_final;
   int opcion;
@@ -119,7 +119,7 @@ int main()
           cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
         else
           cout << "No se encontro la ruta" << endl;
-        break;/*
+        break;
       case 8:
         cout << "Busqueda k-beans" << endl;
         cout << "Nodo inicio: ";
@@ -134,7 +134,7 @@ int main()
           cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
         else
           cout << "No se encontro la ruta" << endl;
-        break;
+        break;/*
       case 9:
         cout << "Busqueda Branch and Bound" << endl;
         cout << "Nodo inicio: ";
