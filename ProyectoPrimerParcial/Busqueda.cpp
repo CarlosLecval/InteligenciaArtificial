@@ -435,6 +435,7 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
                     }
                 }
             }
+            continue;
         }
         unordered_map<string, float> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
