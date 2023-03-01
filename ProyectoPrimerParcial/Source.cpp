@@ -134,7 +134,7 @@ int main()
           cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
         else
           cout << "No se encontro la ruta" << endl;
-        break;/*
+        break;
       case 9:
         cout << "Busqueda Branch and Bound" << endl;
         cout << "Nodo inicio: ";
@@ -146,7 +146,7 @@ int main()
           cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
         else
           cout << "No se encontro la ruta" << endl;
-        break;*/
+        break;
       case 10:
         cout << "Busqueda A*" << endl;
         cout << "Nodo inicio: ";
