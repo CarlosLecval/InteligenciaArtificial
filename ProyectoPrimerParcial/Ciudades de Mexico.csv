@@ -1,0 +1,132 @@
+﻿Ciudad 1,Costo ciudad 1,Coordenada X Ciudad 1,Coordenada Y Ciudad 1,Ciudad 2,Costo ciudad 2,Coordenada X Ciudad 2,Coordenada Y Ciudad 2,Costo del enlace
+Guanajuato,80,1023,900,Salamanca,90,1040,915,61
+Mexico,90,1169,985,Toluca,110,1137,993,66
+Toluca,110,1137,993,Atlacomulco,90,1128,953,67
+Cordoba,80,1328,1017,Veracruz,90,1348,996,70
+Mexico,90,1169,985,Cuernavaca,100,1170,1026,76
+Manzanillo,80,820,998,Colima,50,860,1005,80
+Saltillo,70,1014,548,Monterrey,90,1077,529,86
+Salamanca,90,1040,915,Queretaro,90,1104,900,87
+Tehuacan,80,1279,1062,Puebla,90,1233,1021,90
+Matamoros,80,1233,529,Reynosa,90,1186,516,98
+Chilpancingo,140,1163,1119,Iguala,90,1155,1071,100
+Ciudad Altamirano,110,1083,1052,Cuernavaca,100,1170,1026,102
+Tijuana,110,87,36,Ensenada,50,100,93,108
+Morelia,90,1035,983,Salamanca,90,1040,915,111
+Mexico,90,1169,985,Pachuca,100,1184,914,115
+Puebla,90,1233,1021,Izucar de Matamoros,90,1238,1067,115
+Veracruz,90,1348,996,Jalapa,90,1302,965,119
+Atlacomulco,90,1128,953,Queretaro,90,1104,900,120
+Tehuacan,80,1279,1062,Cordoba,80,1328,1017,120
+Ciudad Victoria,80,1183,703,Soto la Marina,80,1222,702,121
+Izucar de Matamoros,90,1238,1067,Cuernavaca,100,1170,1026,121
+Iguala,90,1155,1071,Cuernavaca,100,1170,1026,122
+Huizache,50,1084,754,San Luis Potosi,70,1022,801,125
+Ciudad Obregon,90,473,403,Guaymas,80,426,367,127
+San Luis Potosi,70,1022,801,Zacatecas,90,943,755,128
+Zacatecas,90,943,755,Aguascalientes,100,946,826,128
+Acapulco,100,1139,1150,Chilpancingo,140,1163,1119,129
+Mexico,90,1169,985,Puebla,90,1233,1021,133
+Playa Azul,100,973,1070,Zihuatanejo,90,1040,1116,136
+Oaxaca,100,1316,1142,Tehuacan,80,1279,1062,140
+Guaymas,80,426,367,Hermosillo,80,411,317,142
+Veracruz,90,1348,996,Alvarado,80,1386,1042,150
+Chetumal,110,1862,967,Felipe Carrillo Puerto,60,1881,888,153
+Mexico,90,1169,985,Tlaxcala,100,1224,981,156
+Felipe Carrillo Puerto,60,1881,888,Valladolid,90,1847,829,160
+Cancun,100,1921,821,Valladolid,90,1847,829,161
+Juarez,90,681,128,Janos,90,590,177,161
+La Paz,70,429,650,Cabo San Lucas,70,455,710,163
+Nuevo Laredo,100,1098,418,Piedras Negras,100,1041,338,164
+Ciudad del Carmen,90,1629,997,Villa Hermosa,90,1582,1053,168
+Tepic,110,779,844,Puerto Vallarta,90,749,906,169
+Oaxaca,100,1316,1142,Puerto Angel,90,1343,1209,170
+Iguala,90,1155,1071,Ciudad Altamirano,110,1083,1052,179
+Janos,90,590,177,Agua Prieta,110,515,157,179
+Ciudad Altamirano,110,1083,1052,Toluca,110,1137,993,180
+Valladolid,90,1847,829,Merida,90,1774,833,180
+Aguascalientes,100,946,826,Guanajuato,80,1023,900,182
+Ciudad Altamirano,110,1083,1052,Zihuatanejo,90,1040,1116,183
+Hidalgo del Parral,80,687,434,Chihuahua,130,707,332,187
+Puebla,90,1233,1021,Cordoba,80,1328,1017,188
+San Luis Potosi,70,1022,801,Aguascalientes,100,946,826,188
+Jalapa,90,1302,965,Tlaxcala,100,1224,981,189
+Mexicalli,90,167,34,Tijuana,110,87,36,189
+Ensenada,50,100,93,San Quintin,60,136,184,190
+Merida,90,1774,833,Campeche,100,1730,914,192
+Tuxpan,110,1247,853,Tampico,80,1221,784,193
+Monterrey,90,1077,529,Monclova,70,999,472,194
+Tehuantepec,80,1420,1170,Puerto Angel,90,1343,1209,194
+Acayucan,110,1433,1089,Tehuantepec,80,1420,1170,201
+Topolobampo,110,540,511,Ciudad Obregon,90,473,403,201
+Saltillo,70,1014,548,Monclova,70,999,472,203
+Mexicalli,90,167,34,San Felipe,70,176,154,204
+San Luis Potosi,70,1022,801,Queretaro,90,1104,900,205
+Culiacan,90,640,623,Topolobampo,110,540,511,206
+Mexico,90,1169,985,Queretaro,90,1104,900,215
+Chihuahua,130,707,332,Ojinaga,90,795,268,217
+Campeche,100,1730,914,Ciudad del Carmen,90,1629,997,225
+Felipe Carrillo Puerto,60,1881,888,Cancun,100,1921,821,226
+Guadalajara,70,886,909,Tepic,110,780,843,227
+Durango,100,808,681,Torreon,110,895,559,229
+Monterrey,90,1077,529,Nuevo Laredo,100,1098,418,230
+Acayucan,110,1433,1089,Villa Hermosa,90,1582,1053,236
+Agua Prieta,110,515,157,Santa Ana,60,404,192,236
+Monclova,70,999,472,Piedras Negras,100,1041,338,236
+Santo Domingo,60,343,556,La Paz,70,429,650,236
+Reynosa,90,1186,516,Nuevo Laredo,100,1098,418,237
+Huizache,50,1084,754,Ciudad Victoria,80,1183,703,238
+Zihuatanejo,90,1040,1116,Acapulco,100,1139,1150,239
+Ciudad Victoria,80,1183,703,Tampico,80,1221,784,243
+Toluca,110,1137,993,Morelia,90,1035,983,243
+Alvarado,80,1386,1042,Acayucan,110,1433,1089,248
+Aguascalientes,100,946,826,Guadalajara,70,886,909,250
+Colima,50,860,1005,Playa Azul,100,973,1070,250
+San Felipe,70,176,154,Ensenada,50,100,93,251
+Tampico,80,1221,784,San Luis Potosi,70,1022,801,254
+Pinotepa Nacional,100,1256,1190,Acapulco,100,1139,1150,259
+Guadalajara,70,886,909,Salamanca,90,1040,915,260
+Pachuca,100,1184,914,Tuxpan,110,1247,853,261
+Tehuantepec,80,1420,1170,Oaxaca,100,1316,1142,264
+Puerto Vallarta,90,749,906,Manzanillo,80,820,998,267
+Mazatlan,90,734,762,Culiacan,90,640,623,270
+Sonoita,60,280,91,Mexicalli,90,167,34,271
+Francisco Escarcega,60,1717,992,Chetumal,110,1862,967,273
+Acayucan,110,1433,1089,Tuxtla Gutierrez,90,1548,1137,275
+Manzanillo,80,820,998,Playa Azul,100,973,1070,275
+Hermosillo,80,411,317,Santa Ana,60,404,192,277
+Torreon,110,895,559,Saltillo,70,1014,548,277
+Guadalajara,70,886,909,Manzanillo,80,820,998,278
+Mazatlan,90,734,762,Tepic,110,779,844,278
+Durango,100,808,681,Mazatlan,90,734,762,283
+Zacatecas,90,943,755,Durango,90,808,681,289
+Chetumal,110,1862,967,Merida,90,1774,833,301
+Oaxaca,100,1316,1142,Izucar de Matamoros,90,1238,1067,304
+Villa Hermosa,90,1582,1053,Francisco Escarcega,60,1717,992,304
+Monterrey,90,1077,529,Ciudad Victoria,80,1183,703,310
+Ciudad Victoria,80,1183,703,Matamoros,80,1233,529,312
+Tuxpan,110,1247,853,Veracruz,90,1348,996,313
+Colima,50,860,1005,Morelia,90,1035,983,315
+Santa Rosalia,60,319,415,Santo Domingo,60,343,556,317
+Zacatecas,90,943,755,Guadalajara,70,886,909,318
+Chihuahua,130,707,332,Janos,90,590,177,320
+Monclova,70,999,472,Torreon,110,895,559,332
+Alvarado,80,1386,1042,Oaxaca,100,1316,1142,339
+Saltillo,70,1014,548,Huizache,50,1084,754,344
+Chetumal,110,1862,967,Campeche,100,1730,914,350
+Chihuahua,130,707,332,Juarez,90,681,128,354
+Santa Ana,60,404,192,Sonoita,60,280,91,362
+Zacatecas,90,943,755,Saltillo,70,1014,548,363
+Morelia,90,1035,983,Playa Azul,100,973,1070,369
+Zacatecas,90,943,755,Torreon,110,895,559,376
+Hidalgo del Parral,80,687,434,Topolobampo,110,540,511,380
+Tampico,80,1221,784,Queretaro,90,1103,898,380
+Puerto Angel,90,1343,1209,Pinotepa Nacional,100,1256,1190,387
+Tuxtla Gutierrez,90,1548,1137,Villa Hermosa,90,1582,1053,395
+Guadalajara,70,886,909,Colima,50,860,1005,401
+Tehuantepec,80,1420,1170,Tapachula,80,1210,1233,418
+Hidalgo del Parral,80,687,434,Durango,90,808,681,430
+Torreon,110,895,559,Chihuahua,130,707,332,460
+Tapachula,80,1560,1233,Tuxtla Gutierrez,90,1548,1137,492
+Culiacan,90,640,623,Hidalgo del Parral,80,687,434,500
+San Quintin,60,136,184,Santa Rosalia,60,319,415,605

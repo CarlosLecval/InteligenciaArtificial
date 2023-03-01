@@ -6,6 +6,7 @@ Arbol::Arbol()
 
 void Arbol::crea_arbol(Nodo_informacion contenido)
 {
+    arbol_de_busqueda.clear();
     Nodo_del_arbol temporal;
     temporal.contenido = contenido;
     temporal.hijos.clear();
