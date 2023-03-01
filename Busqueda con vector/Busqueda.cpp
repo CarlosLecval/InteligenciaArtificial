@@ -205,46 +205,6 @@ bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_f
     return false;
 }
 
-bool Busqueda::busqueda_tinmarin(string nodo_inicio, string nodo_final, int& nodo_encontrado)
-{
-    tipo_nodo_informacion informacion_del_nodo_inicio;
-    tipo_nodo_informacion informacion_del_hijo_a_adicionar;
-    unsigned int nodo_actual = 0;
-    vector<tipo_enlace_de_grafo> vecinos;
-    if (!devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, arbol_de_busqueda, 
-                                                            -1, informacion_del_nodo_inicio))
-        return false;
-    crea_arbol(informacion_del_nodo_inicio, arbol_de_busqueda);
-    Agenda.clear();
-    Agenda.push_back(0);
-    while (!Agenda.empty())
-    {
-        nodo_actual = Agenda[Agenda.size()/2];
-        Agenda.erase(Agenda.begin() + Agenda.size()/2);
-        if (arbol_de_busqueda[nodo_actual].contenido.nombre_del_nodo == nodo_final)
-        {
-            nodo_encontrado = nodo_actual;
-            return true;
-        }
-        devuelve_vecinos_grafo_no_dirigido(arbol_de_busqueda[nodo_actual].contenido.nombre_del_nodo, vecinos);
-        for (unsigned int i = 0; i < vecinos.size(); i++)
-            if (esta_un_nodo_en_ancestros(arbol_de_busqueda, nodo_actual, vecinos[i].nodo_2))
-            {
-                vecinos.erase(vecinos.begin() + i);
-                i--;
-            }
-        for (unsigned int i = 0; i < vecinos.size(); i++)
-        {
-            devuelve_informacion_de_un_vertice_grafo_no_dirigido(vecinos[i].nodo_2, arbol_de_busqueda, 
-                                                            nodo_actual, informacion_del_hijo_a_adicionar);
-            agrega_hijo_a_un_nodo(arbol_de_busqueda, nodo_actual, informacion_del_hijo_a_adicionar);
-            if(i % 2 == 0) Agenda.insert(Agenda.begin(), (unsigned int)(arbol_de_busqueda.size() - 1));
-            else Agenda.push_back((unsigned int)(arbol_de_busqueda.size() - 1));
-        }
-    }
-    return false;
-}
-
 bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     tipo_nodo_informacion informacion_del_nodo_inicio;
@@ -283,6 +243,7 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
     }
     return false;
 }
+
 bool Busqueda::busqueda_profundidad_limitada(string nodo_inicio, string nodo_final,
                                     unsigned int limite_de_profundidad, int& nodo_encontrado)
 {
@@ -689,7 +650,7 @@ bool Busqueda::busqueda_branch_and_bound(string nodo_inicio, string nodo_final, 
                 meta_temporal = mejor_nodo;
             else
                 if (arbol_de_busqueda[meta_temporal].contenido.costo_acumulado > 
-                    arbol_de_busqueda[Agenda[mejor_nodo]].contenido.costo_acumulado)
+                    arbol_de_busqueda[mejor_nodo].contenido.costo_acumulado)
                     meta_temporal = mejor_nodo;
             for (unsigned int i = 0; i < Agenda.size(); i++)
                 if (arbol_de_busqueda[Agenda[i]].contenido.costo_acumulado >= 
@@ -802,7 +763,7 @@ bool Busqueda::busqueda_A_estrella(string nodo_inicio, string nodo_final, int& n
             if (meta_temporal == -1)
                 meta_temporal = mejor_nodo;
             else if (arbol_de_busqueda[meta_temporal].contenido.costo_acumulado >
-                arbol_de_busqueda[Agenda[mejor_nodo]].contenido.costo_acumulado)
+                arbol_de_busqueda[mejor_nodo].contenido.costo_acumulado)
                 meta_temporal = mejor_nodo;
             for (unsigned int i = 0; i < Agenda.size(); i++)
                 if (arbol_de_busqueda[Agenda[i]].contenido.costo_acumulado >=
