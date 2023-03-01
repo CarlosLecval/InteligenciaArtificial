@@ -30,7 +30,7 @@ int Arbol::devuelve_profundidad_del_nodo(int posicion_nodo)
     return arbol_de_busqueda[posicion_nodo].contenido.profundidad;
 }
 
-int Arbol::devuelve_costo_acumulado_del_nodo(int posicion_nodo)
+int Arbol::devuelve_costo_acumulado_del_nodo(int posicion_nodo) const
 {
     return arbol_de_busqueda[posicion_nodo].contenido.costo_acumulado;
 }

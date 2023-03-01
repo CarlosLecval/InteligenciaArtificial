@@ -10,7 +10,7 @@ int main()
   int nodo_encontrado = -1;
   int nodo_encontrado_final = -1;
   //b.busqueda_bidireccional("A", "F", nodo_encontrado, nodo_encontrado_final);
-  b.busqueda_primero_en_profundidad_iterativa("A", "F", nodo_encontrado,1,1);
+  b.busqueda_primero_el_mejor("A", "S", nodo_encontrado);
   if(nodo_encontrado == -1 && nodo_encontrado_final == -1) cout << "No se encontro el nodo" << endl;
   else cout << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
   /*b.busqueda_a_lo_ancho("A", "F", nodo_encontrado);
