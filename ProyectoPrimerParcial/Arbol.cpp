@@ -31,12 +31,12 @@ int Arbol::devuelve_profundidad_del_nodo(int posicion_nodo)
     return arbol_de_busqueda[posicion_nodo].contenido.profundidad;
 }
 
-int Arbol::devuelve_costo_acumulado_del_nodo(int posicion_nodo) const
+float Arbol::devuelve_costo_acumulado_del_nodo(int posicion_nodo) const
 {
     return arbol_de_busqueda[posicion_nodo].contenido.costo_acumulado;
 }
 
-int Arbol::devuelve_costo_mas_heuristica_del_nodo(int posicion_nodo)
+float Arbol::devuelve_costo_mas_heuristica_del_nodo(int posicion_nodo)
 {
     return arbol_de_busqueda[posicion_nodo].contenido.costo_mas_heuristica;
 }
@@ -48,7 +48,7 @@ void Arbol::agrega_hijo_a_un_nodo(int padre, Nodo_informacion contenido)
     temporal.padre = padre;
     temporal.hijos.clear();
     arbol_de_busqueda.push_back(temporal);
-    arbol_de_busqueda[padre].hijos.push_back(arbol_de_busqueda.size() - 1);
+    arbol_de_busqueda[padre].hijos.push_back((unsigned int)arbol_de_busqueda.size() - 1);
 }
 
 bool Arbol::esta_un_nodo_en_ancestros(int nodo_origen, string nodo_presunto_ancestro) const
@@ -64,7 +64,7 @@ bool Arbol::esta_un_nodo_en_ancestros(int nodo_origen, string nodo_presunto_ance
 
 int Arbol::devuelve_tamano_del_arbol() const
 {
-    return arbol_de_busqueda.size();
+    return (int)arbol_de_busqueda.size();
 }
 
 string Arbol::devuelve_nombre_de_un_nodo(int nodo) const
