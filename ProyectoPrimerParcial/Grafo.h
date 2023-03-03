@@ -7,12 +7,6 @@
 
 using namespace std;
 
-struct Enlace
-{
-    string nombre = "";
-    float costo_enlace = 0;
-};
-
 struct Nodo
 {
     float costo_ciudad = 0;
@@ -28,7 +22,6 @@ class Grafo
         Grafo(string);
         bool devuelve_informacion_de_un_nodo(string, Nodo&) const;
         unordered_map<string, float> devuelve_vecinos_de_un_nodo(string nodo) const;
-        void imprime_grafo() const;
     private:
         unordered_map<string, Nodo> grafo;
 };

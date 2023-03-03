@@ -62,16 +62,3 @@ unordered_map<string, float> Grafo::devuelve_vecinos_de_un_nodo(string nodo) con
 {
     return grafo.at(nodo).vecinos;
 }
-
-void Grafo::imprime_grafo() const
-{
-    for(auto it = grafo.begin(); it != grafo.end(); it++)
-    {
-        cout << it->first << " " << it->second.costo_ciudad << " " << it->second.coordenada_x << " " << it->second.coordenada_y << endl;
-        for(auto it2 = it->second.vecinos.begin(); it2 != it->second.vecinos.end(); it2++)
-        {
-            cout << it2->first << " " << it2->second << endl;
-        }
-        cout << endl;
-    }
-}

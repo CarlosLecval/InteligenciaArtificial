@@ -440,7 +440,7 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
             if(arbol_de_busqueda.esta_un_nodo_en_ancestros(nodo_actual, i->first)) continue;
             grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
             arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
-            raiz.costo_mas_heuristica = raiz.costo_acumulado + sqrt(pow(coordenada_x_final - raiz_nodo.coordenada_x, 2) + pow(coordenada_y_final - raiz_nodo.coordenada_y, 2));
+            raiz.costo_mas_heuristica = raiz.costo_acumulado + (float)sqrt(pow(coordenada_x_final - raiz_nodo.coordenada_x, 2) + pow(coordenada_y_final - raiz_nodo.coordenada_y, 2));
             if(meta_temporal != -1 && arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(meta_temporal) < raiz.costo_mas_heuristica) continue;
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, raiz);
             agenda.push_back(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
@@ -462,7 +462,7 @@ string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado) const
         temporal.push_back(nodo_encontrado);
         nodo_encontrado = arbol.devuelve_padre_de_un_nodo(nodo_encontrado);
     }
-    for (int i = temporal.size() - 1; i >= 0; i--)
+    for (int i =(int)temporal.size() - 1; i >= 0; i--)
         camino = camino + " " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
     return camino;
 }
