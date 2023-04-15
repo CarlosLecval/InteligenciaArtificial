@@ -359,7 +359,7 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
             grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
             arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, raiz);
-            if(raiz.costo_acumulado < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(mejor_solucion) || mejor_solucion == -1)
+            if(mejor_solucion == -1 || raiz.costo_acumulado < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(mejor_solucion))
             {
                 agenda.push_back(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
             }
