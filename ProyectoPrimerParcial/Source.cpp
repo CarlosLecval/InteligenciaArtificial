@@ -9,6 +9,7 @@ int main()
   Busqueda b(g);
   int nodo_encontrado, nodo_encontrado_final;
   int opcion;
+  int costo;
   string nodo_inicio, nodo_final;
   do 
   {
@@ -35,7 +36,10 @@ int main()
         cin >> nodo_final;
         nodo_encontrado = -1;
         if(b.busqueda_a_lo_ancho(nodo_inicio, nodo_final, nodo_encontrado))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -47,7 +51,10 @@ int main()
         cin >> nodo_final;
         nodo_encontrado = -1;
         if(b.busqueda_primero_en_profundidad(nodo_inicio, nodo_final, nodo_encontrado))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -62,7 +69,10 @@ int main()
         cin >> profundidad;
         nodo_encontrado = -1;
         if(b.busqueda_primero_en_profundidad_limitada(nodo_inicio, nodo_final, nodo_encontrado, profundidad))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -79,7 +89,10 @@ int main()
         cin >> incremento_profundidad;
         nodo_encontrado = -1;
         if(b.busqueda_primero_en_profundidad_iterativa(nodo_inicio, nodo_final, nodo_encontrado, primera_profundidad, incremento_profundidad))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -92,7 +105,10 @@ int main()
         nodo_encontrado = -1;
         nodo_encontrado_final = -1;
         if(b.busqueda_bidireccional(nodo_inicio, nodo_final, nodo_encontrado, nodo_encontrado_final))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_bidireccional(nodo_encontrado, nodo_encontrado_final) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -104,7 +120,10 @@ int main()
         cin >> nodo_final;
         nodo_encontrado = -1;
         if(b.busqueda_ascenso_a_la_colina(nodo_inicio, nodo_final, nodo_encontrado))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -116,7 +135,10 @@ int main()
         cin >> nodo_final;
         nodo_encontrado = -1;
         if(b.busqueda_primero_el_mejor(nodo_inicio, nodo_final, nodo_encontrado))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -131,7 +153,10 @@ int main()
         cin >> k;
         nodo_encontrado = -1;
         if(b.beam_search(nodo_inicio, nodo_final, nodo_encontrado, k))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -143,7 +168,10 @@ int main()
         cin >> nodo_final;
         nodo_encontrado = -1;
         if(b.branch_and_bound(nodo_inicio, nodo_final, nodo_encontrado))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
@@ -155,7 +183,10 @@ int main()
         cin >> nodo_final;
         nodo_encontrado = -1;
         if(b.busqueda_a_estrella(nodo_inicio, nodo_final, nodo_encontrado))
-          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado) << endl;
+        { 
+          cout << "Ruta encontrada: " << b.devuelve_la_ruta_encontrada(nodo_encontrado,costo) << endl;
+          cout << "Costo: " << costo << endl;
+        }
         else
           cout << "No se encontro la ruta" << endl;
         break;
