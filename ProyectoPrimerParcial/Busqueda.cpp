@@ -452,11 +452,12 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
     return meta_temporal != -1;
 }
  
-string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado) const
+string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado,int& costo) const
 {
     vector<int> temporal;
     string camino = "";
     temporal.clear();
+    costo = arbol.devuelve_costo_acumulado_del_nodo(nodo_encontrado);
     while (nodo_encontrado != -1)
     {
         temporal.push_back(nodo_encontrado);
