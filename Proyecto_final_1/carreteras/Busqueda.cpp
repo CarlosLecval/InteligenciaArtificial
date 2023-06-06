@@ -417,15 +417,18 @@ void Busqueda::ordena_por_costo_mas_heuristica(vector<int>& agenda, Arbol& arbol
 bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
     int meta_temporal = -1;
+    int posicion_mejor;
     vector<int> agenda;
     Arbol arbol_de_busqueda;
     Nodo raiz_nodo;
+    Nodo meta_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
     Nodo_informacion raiz;
     arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
-    if(!grafo.devuelve_informacion_de_un_nodo(nodo_final, raiz_nodo)) return false;
-    float coordenada_x_final = raiz_nodo.coordenada_x;
-    float coordenada_y_final = raiz_nodo.coordenada_y;
+    if(!grafo.devuelve_informacion_de_un_nodo(nodo_final, meta_nodo)) return false;
+    float coordenada_x_final = meta_nodo.coordenada_x;
+    float coordenada_y_final = meta_nodo.coordenada_y;
+    raiz.costo_mas_heuristica = raiz.costo_acumulado + (float)sqrt(pow(coordenada_x_final - raiz_nodo.coordenada_x, 2) + pow(coordenada_y_final - raiz_nodo.coordenada_y, 2));
     arbol_de_busqueda.crea_arbol(raiz);
     agenda.push_back(0);
     while(!agenda.empty())
@@ -433,28 +436,34 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
         if(int(agenda.size()) > max_agenda) max_agenda = agenda.size();
         if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = agenda[0];
-        agenda.erase(agenda.begin());
+        posicion_mejor = 0;
+        auto costo_del_mejor = arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(nodo_actual);
+        for(unsigned int i = 1; i < agenda.size(); i++)
+        {
+            if(costo_del_mejor > arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(agenda[i]))
+            {
+                nodo_actual = agenda[i];
+                posicion_mejor = i;
+                costo_del_mejor = arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(nodo_actual);
+            }
+        }
+        agenda.erase(agenda.begin() + posicion_mejor);
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
-            if (es_costo_mas_heuristica_menor(agenda, arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(nodo_actual), arbol_de_busqueda))
+            if(meta_temporal == -1) meta_temporal = nodo_actual;
+            else if(arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(nodo_actual) < arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(meta_temporal)) meta_temporal = nodo_actual;
+            for(unsigned int i = 0; i < agenda.size(); i++)
             {
-                nodo_encontrado = nodo_actual;
-                arbol = arbol_de_busqueda;
-                return true;
-            }
-            else 
-            {
-                meta_temporal = nodo_actual;
-                for(int i = 0; i < agenda.size(); i++)
-                {
-                    if(arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(agenda[i]) >= arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(nodo_actual))
-                    {
-                        agenda.erase(agenda.begin() + i);
-                        i--;
-                    }
+                if(arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(agenda[i]) >= arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(meta_temporal)) {
+                    agenda.erase(agenda.begin() + i);
+                    i--;
                 }
             }
-            continue;
+            if(agenda.empty())
+            {
+                nodo_encontrado = meta_temporal;
+                return true;
+            }
         }
         unordered_map<string, float> vecinos = grafo.devuelve_vecinos_de_un_nodo(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual));
         for(auto i = vecinos.begin(); i != vecinos.end(); i++)
@@ -463,11 +472,10 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
             grafo.devuelve_informacion_de_un_nodo(i->first, raiz_nodo);
             arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(i->first, nodo_actual, raiz_nodo, raiz);
             raiz.costo_mas_heuristica = raiz.costo_acumulado + (float)sqrt(pow(coordenada_x_final - raiz_nodo.coordenada_x, 2) + pow(coordenada_y_final - raiz_nodo.coordenada_y, 2));
-            if(meta_temporal != -1 && arbol_de_busqueda.devuelve_costo_mas_heuristica_del_nodo(meta_temporal) < raiz.costo_mas_heuristica) continue;
+            if(meta_temporal != -1 && arbol_de_busqueda.devuelve_costo_acumulado_del_nodo(meta_temporal) < raiz.costo_acumulado) continue;
             arbol_de_busqueda.agrega_hijo_a_un_nodo(nodo_actual, raiz);
             agenda.push_back(arbol_de_busqueda.devuelve_tamano_del_arbol() - 1);
         }
-        ordena_por_costo_mas_heuristica(agenda,arbol_de_busqueda);
     }
     nodo_encontrado = meta_temporal;
     arbol = arbol_de_busqueda;

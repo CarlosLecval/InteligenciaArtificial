@@ -515,21 +515,8 @@ void Resultados::printRutasAberdeen(string nodo_inicio, string nodo_final, Busqu
     tabla << setw(20) << left << "Tarda demasiado" << endl;
     nodo_encontrado = -1;
     b_grafo.reset_max();
-    cout << "Busqueda a estrella" << endl;
     tabla << temp << endl;
     tabla << setw(42) << left << "Busqueda a estrella" << setw(3) << left << " | ";
-    if (b_grafo.busqueda_a_estrella(nodo_inicio, nodo_final, nodo_encontrado))
-    {
-        cout << "Ruta encontrada: " << b_grafo.devuelve_la_ruta_encontrada(nodo_encontrado, costo) << endl;
-        cout << "Costo: " << costo << endl << endl;
-        tabla << setw(10) << left << b_grafo.devuelve_max_agenda() << setw(10) << left << b_grafo.devuelve_max_arbol() << endl;
-    }
-    else
-    {
-        cout << "no se encontró la ruta" << endl
-             << endl;
-        tabla << setw(20) << left << "no se encontró la ruta" << endl;
-    }
-    cout << endl
-         << tabla.str() << endl;
+    tabla << setw(20) << left << "Tarda demasiado" << endl;
+    cout << endl << tabla.str() << endl;
 }

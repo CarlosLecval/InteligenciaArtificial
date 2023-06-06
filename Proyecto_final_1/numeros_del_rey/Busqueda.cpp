@@ -20,7 +20,7 @@ bool Busqueda::busqueda_primero_en_profundidad_numeros_del_rey(int resultado_a_b
         {
             nodo_encontrado = nodo_actual;
             arbol = arbol_de_busqueda;
-            return true;
+            cout << devuelve_la_ruta_encontrada_numeros_del_rey(nodo_encontrado) << endl;
         }
         pila.pop();
         unordered_map<char, int> vecinos = grafo.devuelve_vecinos_numeros_del_rey(arbol_de_busqueda.devuelve_numero_de_un_nodo(nodo_actual), arbol_de_busqueda.devuelve_resultado_de_un_nodo(nodo_actual));
