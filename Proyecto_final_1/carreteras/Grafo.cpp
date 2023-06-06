@@ -60,5 +60,9 @@ bool Grafo::devuelve_informacion_de_un_nodo(string nodo, Nodo& nodo_devuelto) co
 
 unordered_map<string, float> Grafo::devuelve_vecinos_de_un_nodo(string nodo) const
 {
+    if(grafo.find(nodo) == grafo.end())
+    {
+        return unordered_map<string, float>();
+    }
     return grafo.at(nodo).vecinos;
 }

@@ -17,6 +17,8 @@ bool Busqueda::busqueda_a_lo_ancho(string nodo_inicio, string nodo_final, int& n
     cola.push(0);
     while(!cola.empty())
     {
+        if(int(cola.size()) > max_agenda) max_agenda = cola.size();
+        if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = cola.front();
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -73,6 +75,8 @@ bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int
     camino_final.push_front(0);
     while(!camino_inicio.empty() && !camino_final.empty())
     {
+        if(int(camino_inicio.size()) > max_agenda) max_agenda = camino_inicio.size();
+        if(arbol_de_busqueda_inicio.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda_inicio.devuelve_tamano_del_arbol();
         int nodo_actual = camino_inicio.front();
         if(arbol_de_busqueda_inicio.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -90,6 +94,8 @@ bool Busqueda::busqueda_bidireccional(string nodo_inicio, string nodo_final, int
             arbol_de_busqueda_inicio.agrega_hijo_a_un_nodo(nodo_actual, raiz);
             camino_inicio.push_back(arbol_de_busqueda_inicio.devuelve_tamano_del_arbol() - 1);
         }
+        if(int(camino_final.size()) > max_agenda) max_agenda = camino_final.size();
+        if(arbol_de_busqueda_final.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda_final.devuelve_tamano_del_arbol();
         nodo_actual = camino_final.front();
         if(arbol_de_busqueda_final.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_inicio)
         {
@@ -128,6 +134,8 @@ bool Busqueda::busqueda_primero_en_profundidad(string nodo_inicio, string nodo_f
     pila.push(0);
     while(!pila.empty())
     {
+        if(int(pila.size()) > max_agenda) max_agenda = pila.size();
+        if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = pila.top();
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -161,6 +169,8 @@ bool Busqueda::busqueda_primero_en_profundidad_limitada(string nodo_inicio, stri
     pila.push(0);
     while(!pila.empty())
     {
+        if(int(pila.size()) > max_agenda) max_agenda = pila.size();
+        if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = pila.top();
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -213,6 +223,7 @@ void Busqueda::ordena_por_costo_acumulado(vector<int>& agenda,Arbol& arbol_de_bu
 
 bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, int& nodo_encontrado)
 {
+    arbol = Arbol();
     auto compare = [&,this](int lhs, int rhs)
     {
         return this->arbol.devuelve_costo_acumulado_del_nodo(lhs) > this->arbol.devuelve_costo_acumulado_del_nodo(rhs);
@@ -228,6 +239,8 @@ bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, 
     agenda.push(0);
     while(!agenda.empty())
     {
+        if(int(agenda.size()) > max_agenda) max_agenda = agenda.size();
+        if(arbol.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol.devuelve_tamano_del_arbol();
         int nodo_actual = agenda.top();
         if(arbol.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -250,6 +263,7 @@ bool Busqueda::busqueda_primero_el_mejor(string nodo_inicio, string nodo_final, 
 
 bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_encontrado, int k)
 {
+    arbol = Arbol();
     vector<int> agenda;   
     Nodo raiz_nodo;
     if(!grafo.devuelve_informacion_de_un_nodo(nodo_inicio, raiz_nodo)) return false;
@@ -259,6 +273,8 @@ bool Busqueda::beam_search(string nodo_inicio, string nodo_final, int& nodo_enco
     agenda.push_back(0);
     while(!agenda.empty())
     {
+        if(int(agenda.size()) > max_agenda) max_agenda = agenda.size();
+        if(arbol.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol.devuelve_tamano_del_arbol();
         int nodo_actual = agenda[0];
         if(arbol.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -290,8 +306,10 @@ bool Busqueda::busqueda_ascenso_a_la_colina(string nodo_inicio, string nodo_fina
     arbol_de_busqueda.devuelve_informacion_de_un_vertice_grafo_no_dirigido(nodo_inicio, -1, raiz_nodo, raiz);
     arbol_de_busqueda.crea_arbol(raiz);
     int* max_num = new int(0);
+    max_agenda = 1;
     while(max_num != NULL)
     {
+        if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = *max_num;
         max_num = NULL;
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
@@ -335,6 +353,8 @@ bool Busqueda::branch_and_bound(string nodo_inicio, string nodo_final, int& nodo
     agenda.push_back(0);
     while(!agenda.empty())
     {
+        if(int(agenda.size()) > max_agenda) max_agenda = agenda.size();
+        if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = agenda[0];
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
         {
@@ -410,6 +430,8 @@ bool Busqueda::busqueda_a_estrella(string nodo_inicio, string nodo_final, int& n
     agenda.push_back(0);
     while(!agenda.empty())
     {
+        if(int(agenda.size()) > max_agenda) max_agenda = agenda.size();
+        if(arbol_de_busqueda.devuelve_tamano_del_arbol() > max_arbol) max_arbol = arbol_de_busqueda.devuelve_tamano_del_arbol();
         int nodo_actual = agenda[0];
         agenda.erase(agenda.begin());
         if(arbol_de_busqueda.devuelve_nombre_de_un_nodo(nodo_actual) == nodo_final)
@@ -472,8 +494,7 @@ string Busqueda::devuelve_la_ruta_bidireccional(int nodo_encontrado, int nodo_en
 {
     vector<string> temporal;
     string camino = "";
-    cout << "encontrado en: " << arbol.devuelve_nombre_de_un_nodo(nodo_encontrado) << endl;
-    cout << "encontrado en: " << arbol_final.devuelve_nombre_de_un_nodo(nodo_encontrado2) << endl;
+    cout << "Ruta encontrada: ";
     while (nodo_encontrado != -1)
     {
         temporal.push_back(arbol.devuelve_nombre_de_un_nodo(nodo_encontrado));
@@ -489,4 +510,20 @@ string Busqueda::devuelve_la_ruta_bidireccional(int nodo_encontrado, int nodo_en
     for(auto i = temporal.begin(); i != temporal.end(); i++)
         camino = camino + " " + *i;
     return camino;
+}
+
+string Busqueda::devuelve_max_agenda() const
+{
+    return to_string(max_agenda);
+}
+
+string Busqueda::devuelve_max_arbol() const
+{
+    return to_string(max_arbol);
+}
+
+void Busqueda::reset_max()
+{
+    max_agenda = -1;
+    max_arbol = -1;
 }

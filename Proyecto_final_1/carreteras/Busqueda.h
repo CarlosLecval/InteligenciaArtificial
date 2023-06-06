@@ -27,10 +27,15 @@ class Busqueda
         bool busqueda_a_estrella(string nodo_inicio, string nodo_final, int& nodo_encontrado);
         string devuelve_la_ruta_encontrada(int nodo_encontrado,int& costo) const;
         string devuelve_la_ruta_bidireccional(int nodo_encontrado_inicio, int nodo_encontrado_final) const;
+        string devuelve_max_agenda() const;
+        string devuelve_max_arbol() const;
+        void reset_max();
     private:
         Arbol arbol;
         Arbol arbol_final;
         Grafo grafo;
+        int max_agenda = -1;
+        int max_arbol = -1;
         bool es_costo_mas_heuristica_menor(vector<int>& agenda, float costo_mas_heuristica, Arbol& arbol) const;
         void ordena_por_costo_acumulado(vector<int>&,Arbol&,int);
         void ordena_por_costo_mas_heuristica(vector<int>&,Arbol&);
