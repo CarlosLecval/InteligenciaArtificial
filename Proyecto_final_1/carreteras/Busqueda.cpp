@@ -486,7 +486,7 @@ string Busqueda::devuelve_la_ruta_encontrada(int nodo_encontrado,int& costo) con
         nodo_encontrado = arbol.devuelve_padre_de_un_nodo(nodo_encontrado);
     }
     for (int i =(int)temporal.size() - 1; i >= 0; i--)
-        camino = camino + " " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
+        camino = camino + " - " + arbol.devuelve_nombre_de_un_nodo(temporal[i]);
     return camino;
 }
 
@@ -508,7 +508,7 @@ string Busqueda::devuelve_la_ruta_bidireccional(int nodo_encontrado, int nodo_en
         nodo_encontrado2 = arbol_final.devuelve_padre_de_un_nodo(nodo_encontrado2);
     }
     for(auto i = temporal.begin(); i != temporal.end(); i++)
-        camino = camino + " " + *i;
+        camino = camino + " - " + *i;
     return camino;
 }
 
